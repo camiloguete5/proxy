@@ -115,6 +115,11 @@ http {
             proxy_set_header X-Forwarded-Host $host;
             proxy_set_header X-Forwarded-Port 443;
 
+            # Headers de Cloudflare para obtener IP real del visitante
+            # CF-Connecting-IP contiene la IP real del usuario que pasa por Cloudflare
+            proxy_set_header CF-Connecting-IP $http_cf_connecting_ip;
+            proxy_set_header CF-IPCountry $http_cf_ipcountry;
+
             # IMPORTANTE: Enviar el dominio del proxy para validación
             # Laravel usará este header para identificar el proxy cuando esté detrás de Cloudflare
             proxy_set_header X-Proxy-Domain $host;
