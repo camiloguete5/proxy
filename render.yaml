@@ -1,29 +1,20 @@
 services:
   - type: web
-    name: zcentral-proxy
+    name: zcentral-proxy-v2
     env: docker
-    region: oregon # Cambia según tu región preferida
+    region: oregon
     plan: free
     dockerfilePath: ./Dockerfile
     dockerContext: ./
 
-    # Variables de entorno
+    # Variables de entorno (simplificadas)
     envVars:
       - key: LARAVEL_APP_URL
-        value: http://tu-app-laravel.com:8000
+        value: https://tu-app-laravel.com
         # IMPORTANTE: Cambia esto por la URL real de tu aplicación Laravel
 
       - key: PORT
         value: 8080
-
-      - key: ALLOWED_PATHS
-        value: ""
-        # Vacío = permitir todas las rutas
-        # Ejemplo para solo API: value: "^/api/.*"
-
-      - key: BLOCKED_PATHS
-        value: "^/\\.env|^/\\.git.*"
-        # Rutas bloqueadas por seguridad
 
       - key: MAX_UPLOAD_SIZE
         value: 100
